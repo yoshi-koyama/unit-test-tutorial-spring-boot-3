@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.AnimeMapper">
+
+    <resultMap type="com.example.demo.entity.Anime" id="animeMap">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="genre" column="genre"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="animeMap">
+        SELECT *
+        FROM anime
+    </select>
+
+    <select id="findById" resultMap="animeMap">
+        SELECT *
+        FROM anime
+        WHERE id = #{id}
+    </select>
+
+    <insert id="createAnime" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO anime (name, genre)
+        VALUES (#{name}, #{genre})
+    </insert>
+
+    <update id="updateAnime">
+        UPDATE anime
+        SET name  = #{name},
+            genre = #{genre}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteAnime">
+        DELETE
+        FROM anime
+        WHERE id = #{id}
+    </delete>
+
+</mapper>
