@@ -41,8 +41,6 @@ public class ResponseService {
     }
 
     public ValidationErrorResponce validationError(BindingResult bindingResult) {
-//        List<ValidationErrors> validationErrorList = bindingResult.getFieldErrors().stream()
-//                .map(validationError -> new ValidationErrors(bindingResult.getFieldError().getField(), bindingResult.getFieldError().getDefaultMessage())).collect(Collectors.toList());
         List<ValidationErrors> validationErrorList = new ArrayList<>();
         String[] validations = {"name", "genre"};
         for (String str : validations) {
