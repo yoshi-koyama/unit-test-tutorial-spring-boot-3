@@ -24,22 +24,48 @@
 Postmanを使用した画面とcurlコマンドを記載
 
 ### 全件検索
-![image](https://user-images.githubusercontent.com/97335620/179456104-c209c4bc-c5f9-4364-8882-59b72e045cd6.png)
-
 ```
 curl 'http://localhost:8080/api/anime'
 ```
+![image](https://user-images.githubusercontent.com/97335620/179456104-c209c4bc-c5f9-4364-8882-59b72e045cd6.png)
+
 ## 一件検索
+```
+curl 'http://localhost:8080/api/anime/1'
+```
 ![image](https://user-images.githubusercontent.com/97335620/179456451-710f3f26-2046-429f-a781-838aba8fc07c.png)
 
 
 ## 登録
+```
+curl -X POST 'http://localhost:8080/api/anime' \
+-H "Content-Type: application/json" \
+-d '{
+"name": "Dr.STONE",
+"genre": "survival"
+}'
+```
+※GitBashの場合、日本語の入力は不可
+
 ![image](https://user-images.githubusercontent.com/97335620/179456660-19bc9071-4ba3-4351-9681-74aeb8450e43.png)
 
 ## 更新
+```
+curl -X PATCH 'http://localhost:8080/api/anime/1' \
+-H "Content-Type: application/json" \
+-d '{
+"name": "Fruits Basket",
+"genre": "Romantic Comedy"
+}'
+```
+※GitBashの場合、日本語の入力は不可
+
 ![image](https://user-images.githubusercontent.com/97335620/179457166-6edd62d6-5d83-4ab0-a8d1-b0eb98e7976a.png)
 
 ## 削除
+```
+curl -X DELETE 'http://localhost:8080/api/anime/1'
+```
 ![image](https://user-images.githubusercontent.com/97335620/179457411-ef256421-df27-4c9e-bac2-3dd7a6a10951.png)
 
 ## バリデーションエラー
@@ -52,3 +78,8 @@ curl 'http://localhost:8080/api/anime'
 （`./gradlew bootRun`コマンドで実行している場合）`ctrl + c`で終了する
 
 `$ docker-compose down`
+
+## ケアできていないエラー
+- 存在しないURLへのアクセス
+- DBへの接続できないなどのシステムエラー
+
