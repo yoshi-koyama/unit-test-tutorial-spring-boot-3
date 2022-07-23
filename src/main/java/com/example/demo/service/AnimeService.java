@@ -26,8 +26,9 @@ public class AnimeService {
         Optional<Anime> animeId = animeMapper.findById(id);
         if (animeId.isPresent()) {
             return animeId.get();
+        } else {
+            throw new ResourceNotFoundException("resource not found");
         }
-        throw new ResourceNotFoundException("resource not found");
     }
 
     public void registerAnime(String name, String genre) {
@@ -40,15 +41,17 @@ public class AnimeService {
         if (animeId.isPresent()) {
             Anime anime = new Anime(id, name, genre);
             animeMapper.updateAnime(anime);
+        } else {
+            throw new ResourceNotFoundException("resource not found");
         }
-        throw new ResourceNotFoundException("resource not found");
     }
 
     public void deleteAnime(Integer id) {
         Optional<Anime> animeId = animeMapper.findById(id);
         if (animeId.isPresent()) {
             animeMapper.deleteAnime(id);
+        } else {
+            throw new ResourceNotFoundException("resource not found");
         }
-        throw new ResourceNotFoundException("resource not found");
     }
 }
