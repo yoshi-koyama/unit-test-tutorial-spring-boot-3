@@ -30,11 +30,12 @@ public class CustomExceptionHandler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex, HttpServletRequest request) {
         Map<String, String> errors = new HashMap<>();
         errors.put("timestamp", ZonedDateTime.now().toString());
         errors.put("status", String.valueOf(HttpStatus.BAD_REQUEST.value()));
         errors.put("error", HttpStatus.BAD_REQUEST.getReasonPhrase());
+        errors.put("path", request.getRequestURI());
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
             String errorMessage = error.getDefaultMessage();
