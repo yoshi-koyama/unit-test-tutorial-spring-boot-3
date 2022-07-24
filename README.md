@@ -47,7 +47,8 @@ curl -X POST 'http://localhost:8080/api/anime' \
 ```
 ※GitBashの場合、日本語の入力は不可
 
-![image](https://user-images.githubusercontent.com/97335620/179456660-19bc9071-4ba3-4351-9681-74aeb8450e43.png)
+![image](https://user-images.githubusercontent.com/97335620/180655252-984b32f0-00bd-47db-ac39-7778edcde979.png)
+
 
 ## 更新
 ```
@@ -60,19 +61,20 @@ curl -X PATCH 'http://localhost:8080/api/anime/1' \
 ```
 ※GitBashの場合、日本語の入力は不可
 
-![image](https://user-images.githubusercontent.com/97335620/179457166-6edd62d6-5d83-4ab0-a8d1-b0eb98e7976a.png)
+![image](https://user-images.githubusercontent.com/97335620/180655337-1519b6f3-8d2c-487e-990b-1aaaa737345d.png)
+
 
 ## 削除
 ```
 curl -X DELETE 'http://localhost:8080/api/anime/1'
 ```
-![image](https://user-images.githubusercontent.com/97335620/179457411-ef256421-df27-4c9e-bac2-3dd7a6a10951.png)
+![image](https://user-images.githubusercontent.com/97335620/180655363-8ad18bb4-3d00-45cf-99dd-cb3f9c48c7b3.png)
 
 ## バリデーションエラー
-![image](https://user-images.githubusercontent.com/97335620/179457641-89280304-ce73-493d-a391-5e9c350b9d20.png)
+![image](https://user-images.githubusercontent.com/97335620/180655479-66f9efce-0a18-4d7f-9f88-ae72ed3fd9dd.png)
 
 ## 更新及び削除で指定したIDのデータが存在しない時
-![image](https://user-images.githubusercontent.com/97335620/179457706-be115bff-9ddd-488a-b88c-a888da14a986.png)
+![image](https://user-images.githubusercontent.com/97335620/180655420-90e50fda-05d4-4ead-aa75-2efed3bf75e1.png)
 
 ## 終了手順
 （`./gradlew bootRun`コマンドで実行している場合）`ctrl + c`で終了する
