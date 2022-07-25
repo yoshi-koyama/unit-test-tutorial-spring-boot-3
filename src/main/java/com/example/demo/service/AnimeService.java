@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.Anime;
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.mapper.AnimeMapper;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +22,13 @@ public class AnimeService {
         return animeList;
     }
 
-    public Optional<Anime> getAnime(Integer id) {
+    public Anime getAnime(Integer id) {
         Optional<Anime> animeId = animeMapper.findById(id);
-        return animeId;
+        if (animeId.isPresent()) {
+            return animeId.get();
+        } else {
+            throw new ResourceNotFoundException("resource not found");
+        }
     }
 
     public void registerAnime(String name, String genre) {
@@ -32,11 +37,21 @@ public class AnimeService {
     }
 
     public void updateAnime(Integer id, String name, String genre) {
-        Anime anime = new Anime(id, name, genre);
-        animeMapper.updateAnime(anime);
+        Optional<Anime> animeId = animeMapper.findById(id);
+        if (animeId.isPresent()) {
+            Anime anime = new Anime(id, name, genre);
+            animeMapper.updateAnime(anime);
+        } else {
+            throw new ResourceNotFoundException("resource not found");
+        }
     }
 
     public void deleteAnime(Integer id) {
-        animeMapper.deleteAnime(id);
+        Optional<Anime> animeId = animeMapper.findById(id);
+        if (animeId.isPresent()) {
+            animeMapper.deleteAnime(id);
+        } else {
+            throw new ResourceNotFoundException("resource not found");
+        }
     }
 }
